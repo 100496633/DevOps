@@ -1,0 +1,40 @@
+{
+  "test_suite": "Podcastify Validation Tests",
+  "test_cases": [
+    {
+      "id": "CP-RF2",
+      "requirement": "RF-2",
+      "title": "Validación de método HTTP",
+      "input": { "method": "POST", "uri_episode": "test.mp3" },
+      "expected_result": { "valid": false, "metric": "Bad method" }
+    },
+    {
+      "id": "CP-RF3",
+      "requirement": "RF-3",
+      "title": "Validación de código de estado",
+      "input": { "method": "GET", "status": 404 },
+      "expected_result": { "valid": false, "metric": "Bad status" }
+    },
+    {
+      "id": "CP-RF4",
+      "requirement": "RF-4",
+      "title": "Detección de Bots",
+      "input": { "user_agent": "Google-CRAWLER/2.1", "method": "GET" },
+      "expected_result": { "valid": false, "metric": "Bot detected" }
+    },
+    {
+      "id": "CP-RF5",
+      "requirement": "RF-5",
+      "title": "Validación de formato MP3",
+      "input": { "uri_episode": "audio/podcast1.wav", "method": "GET" },
+      "expected_result": { "valid": false, "metric": "Bad format resource" }
+    },
+    {
+      "id": "CP-RF7-206",
+      "requirement": "RF-7",
+      "title": "Umbral de descarga petición parcial (206)",
+      "input": { "status": 206, "bytes": 1048576, "id": "user123" },
+      "expected_result": { "valid": true, "metric": "Download 206" }
+    }
+  ]
+}
